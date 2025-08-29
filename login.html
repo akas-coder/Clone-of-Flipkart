@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login here</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            background-color: aliceblue;
+        }
+
+        .dev {
+            display: flex;
+            margin-left: 300px;
+            padding-top: 50px;
+        }
+
+        .requestbutton {
+            background-color: #FB641B;
+            margin-left: 10px;
+            height: 45px;
+            width: 450px;
+            border-radius: 10px;
+            margin-right: 10px;
+            border: #FB641B;
+            cursor: pointer;
+        }
+
+        .requestbutton:hover {
+            background-color: #FF8421;
+        }
+
+        .input {
+            height: 35px;
+            width: 450px;
+            margin-top: 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .loginpage {
+            height: 800px;
+            width: 400px;
+            background-color: aliceblue;
+        }
+
+        .footer {
+            margin-top: 300px;
+            margin-left: 120px;
+            color: rgb(18, 18, 182);
+        }
+
+        .yu {
+            color: blue;
+            border: white;
+            cursor: pointer;
+        }
+
+        .yu:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Style */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <center>
+            <u>Welcome to Flipkart!</u>
+        </center>
+    </h1>
+    <div class="dev">
+        <div class="image"><img src="loginimage.png" height="550px" width="350px"></div>
+        <div class="loginpage">
+            <form id="loginForm">
+                <input type="text" id="emailPhone" placeholder="Enter Email/Phone Number" class="input"> <br><br>
+                <p>
+                    <pre>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</pre>
+                </p><br><br><br>
+                <button type="submit" class="requestbutton">Request OTP</button>
+                <p class="footer">
+                    <button class="yu" type="button" onclick="toggleAccountCreation()">New to Flipkart?</button>
+                    <button class="yu" type="button" onclick="toggleAccountCreation()">Create an Account <a href="signup.html"></a></button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Error Message -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="errorMessage">Please enter a valid Email or Phone number!</p>
+        </div>
+    </div>
+
+    <script>
+        
+        function showModal(message) {
+            var modal = document.getElementById("errorModal");
+            var errorMessage = document.getElementById("errorMessage");
+            errorMessage.textContent = message;
+            modal.style.display = "block";
+        }
+
+        // Function to close the error modal
+        function closeModal() {
+            var modal = document.getElementById("errorModal");
+            modal.style.display = "none";
+        }
+
+        // Function to handle form submission with validation
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            var inputField = document.getElementById("emailPhone");
+            var inputValue = inputField.value.trim();
+
+            // Simple validation for empty input
+            if (inputValue === "") {
+                showModal("Please enter a valid Email or Phone number!");
+                return;
+            }
+
+            // If valid, proceed to OTP request (this is a mock action)
+            alert("OTP request sent to: " + inputValue);
+            // Here you would implement actual OTP sending logic
+        });
+
+        // Function to toggle between login page and account creation (Example Interactivity)
+        function toggleAccountCreation() {
+            var footerText = document.querySelector(".footer");
+            footerText.innerHTML = `<button class="yu" type="button" onclick="toggleAccountCreation()">Already have an account?</button> <button class="yu" type="button" onclick="toggleAccountCreation()">Login</button>`;
+            alert("Redirecting to account creation...");
+        }
+
+        // Close the modal when clicked outside of the modal content
+        window.onclick = function (event) {
+            var modal = document.getElementById("errorModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

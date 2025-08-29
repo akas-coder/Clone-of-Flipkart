@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my flipkart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f0f0f0; 
+            font-family: Arial, sans-serif;
+        }
+
+        .header1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: white; 
+            height: 120px;
+        }
+
+        .header1 .logo img {
+            width: 220px; 
+            height: 95px; 
+            border-radius: 5px; 
+            margin-left: 5px;
+        }
+
+        .header1 a {
+            text-decoration: none;
+        }
+
+        .searchbar input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 400px;
+        }
+
+        .header2 img {
+            width: 100%;
+            height: auto;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .slide img {
+            width: 80%;
+            height: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .product-container1st {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .product {
+            border: 2px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            width: 200px;
+            text-align: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product:hover {
+            transform: scale(1.05); /* Zoom effect */
+            background-color: #f8f8f8; /* Light hover effect */
+        }
+
+        .product h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product .price {
+            color: #ff5722;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Product Container with grid layout */
+        .product-container2nd {
+            display: grid;
+            grid-template-columns: 0.4fr 0.4fr 500px;
+            grid-template-rows: auto auto ;
+            gap: 20px;
+            margin: 20px;
+            margin-left: 100px;
+        }
+
+        /* Style for the first 4 products */
+        .same {
+            border: 2px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .same img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .same:hover {
+            transform: scale(1.05);
+            background-color: #f8f8f8;
+        }
+
+        .same h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .same .price {
+            color: #ff5722;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Style for the 5th large image */
+        .img-large {
+            border: 2px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            height: 100%;
+            text-align: center;
+            border-radius: 10px;
+            grid-column: 3 / 4; /* Occupy the 3rd column */
+            grid-row: 1 / 3; /* Occupy both row 1 and row 2 */
+        }
+
+        .img-large img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .bigimage {
+            height: 360px;
+            width: 93%;
+            margin-left: 20px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .footer a {
+            color: #ff5722;
+            text-decoration: none;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 60px;
+            right: 0;
+            border-radius: 10px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .bt{
+            background-color: #d3846c;
+            width: 60%;
+            height: 25px;
+            border-radius: 3px;
+            padding-top: 3px;
+        }
+
+        /* Responsive Design for Banner */
+        @media (max-width: 1200px) {
+            .banner img {
+                width: 100%;
+                height: 60vh;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .banner img {
+                width: 100%;
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner img {
+                width: 100%;
+                height: 40vh;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .banner img {
+                width: 100%;
+                height: 30vh;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header1">
+        <div class="logo"><img src="flipkartlogo.png" alt="logo">  </div>
+        <div class="searchbar">
+            <input type="text" placeholder="Search for Product Brand and more ">
+        </div>
+        <div class="dropdown">
+            <a href="login.html">
+                <img src="login (2).png" alt="log in" style="height: 60px; width: 140px; border-radius: 12px;">
+            </a>
+            <div class="dropdown-content">
+                <a href="#">My Profile</a>
+                <a href="https://www.flipkart.com/plus">Flipkart Plus Zone</a>
+                <a href="#">Orders</a>
+                <a href="cart.html">Wishlist</a>
+                <a href="#">Rewards</a>
+                <a href="#">Gift Cards</a>
+            </div>
+        </div>
+        <div class="signup"><a href="signup.html">
+            <img src="signup.png" alt="signup" style="height: 55px; width: 140px; border-radius: 12px;">
+        </a></div>
+        <div class="addtocart"><a href="cart2.html">
+            <img src="addtocart.png" alt="addtocart" style="height: 55px; width: 125px; border-radius: 12px;">
+         </a></div>
+         <div class="becomeaseller"><a href="#">
+            <img src="becomeaseller.png" alt="becomeaseller" style="height: 55px; width: 120px; border-radius: 12px;">
+         </a></div>
+    </div>
+    <div class="header2">
+        <a href="#">
+            <img src="longer.png" alt="tea" style=" padding: 25px;margin-left: 1.7%; height: 200px; width: 95%;">
+        </a>
+    </div>
+    <div class="banner">
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <img src="img1.jpg" alt="Banner 1">
+                </div>
+                <div class="slide">
+                    <img src="img2.jpg" alt="Banner 2">
+                </div>
+                <div class="slide">
+                    <img src="img3.jpeg" alt="Banner 3">
+                </div>
+                <div class="slide">
+                    <img src="banner.jpg" alt="Banner 4">
+                </div>
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+    <div class="product-container1st">
+        <div class="product">
+            <a href="#" onclick="showAlert('Adidas shoes')"><img src="shoes.jpeg" alt="Adidas"></a>
+            <h3>Adidas shoes</h3>
+            <p>Affordable price</p>
+            <div class="price">₹2,999</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button>
+        </div>
+    
+        <div class="product">
+            <a href="#" onclick="showAlert('Peter England Watch')"><img src="watch.jpeg" alt="watch"></a>
+            <h3>Peter England</h3>
+        
+            <div class="price">₹1,999</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+    
+        <div class="product">
+            <a href="#" onclick="showAlert('Mobile Cover')"><img src="cover.jpeg" alt="Mobile cover"></a>
+            <h3>Mobile cover</h3>
+            <p>Safe from damage</p>
+            <div class="price">₹149</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+    
+        <div class="product">
+            <a href="#" onclick="showAlert('Toys for Babies')"><img src="toys.png" alt="toys"></a>
+            <h3>Toys for babies</h3>
+            <p>Get exciting deals</p>
+            <div class="price">₹540</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+    
+        <div class="product">
+            <a href="#" onclick="showAlert('Branded Clothes')"><img src="clothes.jpeg" alt="clothes"></a>
+            <h3>Branded clothes</h3>
+            <p>Affordable price starts at</p>
+            <div class="price">₹499</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+    
+        <div class="product">
+            <a href="#" onclick="showAlert('Wrogn Bags')"><img src="bags.jpeg" alt="bags"></a>
+            <h3>Wrogn bags</h3>
+            <p>Reliable and efficient product</p>
+            <div class="price">₹699</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+        </div>
+
+    <div class="product-container2nd">
+        <!-- First 4 products -->
+        <div class="same">
+            <a href="#" onclick="showAlert('Adidas shoes')"><img src="parrot.webp" alt="decorater"></a>
+            <h3>Circle OM</h3>
+            <p>for pleasure and happiness</p>
+            <div class="price">₹279</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+
+        <div class="same">
+            <a href="#" onclick="showAlert('Peter England Watch')"><img src="sweater.jpg" alt="watch"></a>
+            <h3>Raymond's</h3>
+            <p>Sweater for men</p>
+            <div class="price">₹1333</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+
+        <div class="same">
+            <a href="#" onclick="showAlert('Mobile Cover')"><img src="saree.webp" alt="Varanasi saaree"></a>
+            <h3>Varanasi Saaree</h3>
+            <p>Just starting from</p>
+            <div class="price">₹899</div>
+            <button class="bt"onclick="addToCart('Branded clothes', 499)">Buy Now</button><br>
+        </div>
+
+        <div class="same">
+            <a href="#" onclick="showAlert('Toys for Babies')"><img src="oppo.jpg" alt="toys"></a>
+            <h3>Android phone </h3>
+            <p>Oppo with AI featured</p>
+            <div class="price">₹12879</div>
+            <button class="bt"onclick="addToCart('Android phone', 12879)">Buy Now</button>
+            
+        </div>
+
+        <!-- Fifth large image -->
+        <div class="img-large">
+            <a href="#"><img src="parrot.jpg" alt="Large Image" style="height: 250px;width: 150px;"></a>
+            <h3>Special Offer</h3>
+            <p>Shop Now!</p>
+        </div>
+    </div>
+    <div class="bigimage">
+      <a href="#"><img src="bigoffer.png" alt="big offer" style="height: 380px; width: 94%; margin-left: 40px;"></a>
+    </div>
+
+  <footer class="footer">
+    <p>© 2024 Flipkart | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+    <hr> 
+    
+    <!-- Contact Us Section -->
+    <h2>Contact Us</h2>
+    <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
+    <ul> <br>
+        <li>Email: <a href="mailto:fli_144@flipkart.com">support@flipkart.com</a></li> 
+        <li>Phone: <a href="tel:+18001234567">+91 9335528946  </a></li> 
+        <li>Address: Flipkart, Sector 62, Galaxy apartment, Ghaziabad, Uttar Pradesh, 208025</li> 
+    </ul> <br>
+
+    <h3>Follow Us</h3>
+    <ul style="list-style-type: none; padding: 0;">
+        <li><a href="https://www.facebook.com/flipkart" target="_blank">Facebook</a></li>
+        <br>
+        <li><a href="https://twitter.com/flipkart" target="_blank">Twitter</a></li><br>
+        <li><a href="https://www.instagram.com/flipkart" target="_blank">Instagram</a></li><br>
+        <li><a href="https://www.linkedin.com/company/flipkart" target="_blank">LinkedIn</a></li>
+    </ul>
+
+    <!----> Support -->
+    <h3>Support</h3>
+    <ul style="list-style-type: none; padding: 0;">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Customer Support</a></li>
+    </ul>
+  </footer>
+
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(step) {
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            
+            currentIndex = (currentIndex + step + totalSlides) % totalSlides; 
+            document.querySelector('.slider').style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+
+        function showAlert(productName) {
+            alert('You clicked on: ' + productName);
+        }
+
+function addToCart(productName, price) {
+    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    
+    const product = {
+        productName: productName,
+        price: price,
+        image: "image_url" 
+    };
+
+    
+    cart.push(product);
+
+   
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(productName + ' added to the cart!');
+}
+
+    </script>
+</body>
+</html>
