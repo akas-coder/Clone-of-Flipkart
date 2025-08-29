@@ -1,2 +1,2 @@
-# Clone-of-Flipkart
+# FLIPKART CLONE
 Basic UI for Flipkart Clone
